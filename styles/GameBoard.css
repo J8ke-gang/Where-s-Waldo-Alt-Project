@@ -1,0 +1,16 @@
+.game-board {
+  position: relative;
+  display: inline-block;
+  border: 3px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.game-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  cursor: crosshair;
+  transition: transform 0.2s ease;
+}

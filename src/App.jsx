@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import GameBoard from "./components/GameBoard";
 import Timer from "./components/Timer";
 import ItemDropDown from "./components/ItemDropDown";
+import "../styles/App.css";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(true);
@@ -37,33 +38,38 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Dropdown and Reset at Top */}
+      <div className="top-bar">
+        <ItemDropDown allItems={allItems} itemsFound={itemsFound} />
+
+        <button
+          onClick={() => {
+            setIsRunning(false);
+            setFinalTime(null);
+            setItemsFound([]);
+            setResetKey((prev) => prev + 1);
+            setIsRunning(true);
+            setFoundMessage("");
+          }}
+        >
+          Reset Timer
+        </button>
+      </div>
+
+      {/* Floating Found Message */}
+      {foundMessage && <div className="popup-message">{foundMessage}</div>}
+
+      {/* Title and Timer */}
       <h1>Find The pieces listed</h1>
       <Timer isRunning={isRunning} onStop={handleStop} resetKey={resetKey} />
       {finalTime !== null && <p>Your final time: {finalTime} seconds</p>}
-      <button
-        onClick={() => {
-          setIsRunning(false);
-          setFinalTime(null);
-          setItemsFound([]);
-          setResetKey((prev) => prev + 1);
-          setIsRunning(true);
-          setFoundMessage("");
-        }}
-      >
-        Reset Timer
-      </button>
 
+      {/* Gameboard */}
       <GameBoard
         onItemsFound={handleItemsFound}
         itemsFound={itemsFound}
         setFoundMessage={setFoundMessage}
       />
-
-      <ItemDropDown allItems={allItems} itemsFound={itemsFound} />
-
-      {foundMessage && (
-        <p style={{ color: "green", fontWeight: "bold" }}>{foundMessage}</p>
-      )}
     </div>
   );
 }

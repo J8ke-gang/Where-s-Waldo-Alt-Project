@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Marker from "./Marker";
 import background from "../assets/background.jpg";
+import "../../styles/GameBoard.css";
 
 const itemLocations = {
   "Blueprint Scroll": { x: 190, y: 595 },
   "Robot Arm": { x: 757, y: 413 },
-   "Headset": { x: 934, y: 808 },
+  Headset: { x: 934, y: 808 },
   "Noodle Cup": { x: 742, y: 955 },
 };
 
@@ -54,23 +55,12 @@ export default function GameBoard({
   };
 
   return (
-    <div
-      className="relative inline-block"
-      style={{
-        position: "relative",
-        display: "inline-block",
-      }}
-    >
+    <div className="game-board">
       <img
         src={background}
         alt="Game"
         onClick={handleClick}
-        style={{
-          cursor: "crosshair",
-          display: "block",
-          maxWidth: "100%",
-          height: "auto",
-        }}
+        className="game-image"
       />
       {markerPos && (
         <Marker x={markerPos.x} y={markerPos.y} color={markerColor} />

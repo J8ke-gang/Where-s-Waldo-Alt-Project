@@ -1,15 +1,14 @@
+import "../../styles/ItemDropDown.css";
+
 export default function ItemDropDown({ allItems, itemsFound }) {
   return (
-    <div>
+    <div className="item-dropdown">
       <h3>Items to Find:</h3>
-      <ul>
+      <ul className="item-list">
         {allItems.map((item) => (
           <li
             key={item}
-            style={{
-              color: itemsFound.includes(item) ? "green" : "black",
-              fontWeight: itemsFound.includes(item) ? "bold" : "normal",
-            }}
+            className={itemsFound.includes(item) ? "item-found" : ""}
           >
             {item} {itemsFound.includes(item) ? "✓" : ""}
           </li>
@@ -18,3 +17,4 @@ export default function ItemDropDown({ allItems, itemsFound }) {
     </div>
   );
 }
+

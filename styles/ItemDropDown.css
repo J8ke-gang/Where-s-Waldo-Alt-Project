@@ -1,0 +1,29 @@
+
+.item-dropdown {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: fit-content;
+}
+
+.item-dropdown h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.item-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-list li {
+  margin: 0.3rem 0;
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.item-found {
+  color: green;
+  font-weight: bold;
+}
