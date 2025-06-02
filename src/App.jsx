@@ -11,9 +11,10 @@ export default function App() {
   const [itemsFound, setItemsFound] = useState([]);
   const [resetKey, setResetKey] = useState(0);
   const [foundMessage, setFoundMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const allItems = ["Blueprint Scroll", "Robot Arm", "Headset", "Noodle Cup"];
-
+  //handle items found
   const handleItemsFound = (item) => {
     setItemsFound((prev) => (prev.includes(item) ? prev : [...prev, item]));
   };
@@ -24,6 +25,7 @@ export default function App() {
     }
   }, [itemsFound, isRunning, allItems.length]);
 
+  // handle end of game enter name and time you found items
   const handleStop = (time) => {
     setFinalTime(time);
     const name = prompt(
@@ -36,7 +38,7 @@ export default function App() {
         JSON.parse(localStorage.getItem("leaderboard")) || [];
       existingScores.push(newScore);
 
-      // Sort scores by time ascending (fastest first)
+      // Sort scores by time fastest first
       existingScores.sort((a, b) => a.time - b.time);
 
       // Save top 10 scores
@@ -48,49 +50,48 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      {/* Title at the top */}
-      <h1 className="game-title">Find the pieces listed Below</h1>
+    <div className="app-container">
+      <LeaderBoard className="leaderboard" />
 
-      {/* Top bar with dropdown, timer, and reset */}
-      <div className="top-bar">
-        <ItemDropDown allItems={allItems} itemsFound={itemsFound} />
-
-        <Timer isRunning={isRunning} onStop={handleStop} resetKey={resetKey} />
-
-        <button
-          className="reset-button"
-          onClick={() => {
-            setIsRunning(false);
-            setFinalTime(null);
-            setItemsFound([]);
-            setResetKey((prev) => prev + 1);
-            setIsRunning(true);
-            setFoundMessage("");
-          }}
-        >
-          Reset
-        </button>
+      <div className="game-area">
+        <h1 className="game-title">Find the pieces listed Below</h1>
+        <div className="top-bar">
+          <ItemDropDown allItems={allItems} itemsFound={itemsFound} />
+          <Timer
+            isRunning={isRunning}
+            onStop={handleStop}
+            resetKey={resetKey}
+          />
+          <button
+            className="reset-button"
+            onClick={() => {
+              setIsRunning(false);
+              setFinalTime(null);
+              setItemsFound([]);
+              setResetKey((prev) => prev + 1);
+              setIsRunning(true);
+              setFoundMessage("");
+              setMessageType("");
+            }}
+          >
+            Reset
+          </button>
+        </div>
+        <GameBoard
+          onItemsFound={handleItemsFound}
+          itemsFound={itemsFound}
+          setFoundMessage={setFoundMessage}
+          setMessageType={setMessageType}
+        />
+        {finalTime !== null && (
+          <p className="final-time">
+            You Found All Items In: {finalTime} seconds
+          </p>
+        )}
+        {foundMessage && (
+          <div className={`popup-message ${messageType}`}>{foundMessage}</div>
+        )}
       </div>
-
-      {/* Show final time if available */}
-      {finalTime !== null && (
-        <p className="final-time">
-          You Found All Items In: {finalTime} seconds
-        </p>
-      )}
-
-      {/* Floating Found Message */}
-      {foundMessage && <div className="popup-message">{foundMessage}</div>}
-
-      {/* Gameboard */}
-      <GameBoard
-        onItemsFound={handleItemsFound}
-        itemsFound={itemsFound}
-        setFoundMessage={setFoundMessage}
-      />
-
-      <LeaderBoard />
     </div>
   );
 }

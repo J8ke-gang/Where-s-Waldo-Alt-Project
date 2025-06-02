@@ -3,14 +3,15 @@ export default function Marker({ x, y, color = "red" }) {
     <div
       style={{
         position: "absolute",
-        top: y - 10,
-        left: x - 10,
+        top: `${y}%`,
+        left: `${x}%`,
         width: 20,
         height: 20,
         borderRadius: "50%",
         border: `4px solid ${color}`,
         pointerEvents: "none",
         boxSizing: "border-box",
+        transform: "translate(-50%, -50%)",
       }}
     />
   );

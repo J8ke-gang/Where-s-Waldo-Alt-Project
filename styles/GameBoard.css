@@ -1,10 +1,16 @@
+.game-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 .game-board {
   position: relative;
-  display: inline-block;
-  border: 3px solid #333;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  width: 100%;
 }
 
 .game-image {
@@ -12,5 +18,42 @@
   max-width: 100%;
   height: auto;
   cursor: crosshair;
-  transition: transform 0.2s ease;
+  border-radius: 8px;
+}
+/*title*/
+.game-title {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: aliceblue;
+}
+
+/*pop up message*/
+.popup-message {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  animation: fadeOut 1s ease-out 1s forwards;
+  color: white;
+  background-color: gray;
+  border: 2px solid darkgray; 
+}
+
+.popup-message.success {
+  background-color: #28a745;
+  border: 2px solid #1e7e34;
+}
+
+.popup-message.error {
+  background-color: #dc3545;
+  border: 2px solid #b02a37;
 }

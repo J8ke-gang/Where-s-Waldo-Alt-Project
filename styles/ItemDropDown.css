@@ -7,14 +7,46 @@
   align-items: center;
   margin-bottom: 1.5rem;
   border-radius: 8px;
-  padding: 1rem 2rem;
-  max-width: 900px;
+  padding: 1rem 7rem;
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
 }
 
-.reset-button{
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size:medium;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.item-dropdown {
+  background-color: #444;
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  color: aliceblue;
+}
+
+/*title of the dropdown*/
+h3 {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.item-found {
+  color: green;
+  font-weight: bold;
+}
+
+/*reset button*/
+.reset-button {
   padding: 0.75rem 1.5rem;
   background-color: #007bff;
   color: white;
@@ -22,45 +54,17 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
   font-size: 1rem;
 }
 
-.reset-button:hover{
+.reset-button:hover {
   background-color: #0056b3;
 }
 
-.final-time{
-  font-size: 1.2rem;
+.final-time {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
   margin-bottom: 1rem;
-}
-
-.item-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.item-dropdown {
-  background-color: #444;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  color: aliceblue;
-  transition: background-color 0.2s ease;
-}
-
-h3{
-  text-align: center;
-  width: 100%;
-  font-size: 1.5rem;
-  font-style: italic;
-}
-
-.item-found {
-  color: green;
-  font-weight: bold;
 }

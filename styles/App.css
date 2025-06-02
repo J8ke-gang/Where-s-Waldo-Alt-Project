@@ -1,43 +1,18 @@
-.app {
-  padding: 1rem;
-  font-family: Arial, sans-serif;
+body {
+  margin: 0;
+  background-color: #444;
 }
 
-.top-bar {
+.app-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #eee;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
+  height: 100vh;
 }
-
-.popup-message {
-  position: fixed;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #e0ffe0;
-  color: #006400;
-  padding: 1rem 2rem;
-  border: 2px solid #006400;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  z-index: 999;
-  animation: fadeOut 2s forwards;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+/*leader board style*/
+.leaderboard {
+  width: 250px;
+  background-color: #222;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
