@@ -1,26 +1,63 @@
-
-.item-dropdown {
-  padding: 1rem;
-  border: 1px solid #ccc;
+.top-bar {
+  display: flex;
+  background-color: #333;
+  color: aliceblue;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  width: fit-content;
+  padding: 1rem 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
 }
 
-.item-dropdown h3 {
-  margin-bottom: 0.5rem;
+.reset-button{
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.reset-button:hover{
+  background-color: #0056b3;
+}
+
+.final-time{
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .item-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.item-list li {
-  margin: 0.3rem 0;
-  transition: color 0.2s, font-weight 0.2s;
+.item-dropdown {
+  background-color: #444;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: aliceblue;
+  transition: background-color 0.2s ease;
+}
+
+h3{
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-style: italic;
 }
 
 .item-found {

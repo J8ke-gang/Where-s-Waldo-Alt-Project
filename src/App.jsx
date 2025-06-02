@@ -3,6 +3,7 @@ import GameBoard from "./components/GameBoard";
 import Timer from "./components/Timer";
 import ItemDropDown from "./components/ItemDropDown";
 import "../styles/App.css";
+import LeaderBoard from "./components/LeaderBoard";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(true);
@@ -21,7 +22,7 @@ export default function App() {
     if (itemsFound.length === allItems.length && isRunning) {
       setIsRunning(false);
     }
-  }, [itemsFound, isRunning]);
+  }, [itemsFound, isRunning, allItems.length]);
 
   const handleStop = (time) => {
     setFinalTime(time);
@@ -29,20 +30,36 @@ export default function App() {
       `You found them all in ${time} seconds! Enter your name:`
     );
 
-    fetch("/api/submit-score", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, time }),
-    });
+    if (name) {
+      const newScore = { name, time };
+      const existingScores =
+        JSON.parse(localStorage.getItem("leaderboard")) || [];
+      existingScores.push(newScore);
+
+      // Sort scores by time ascending (fastest first)
+      existingScores.sort((a, b) => a.time - b.time);
+
+      // Save top 10 scores
+      localStorage.setItem(
+        "leaderboard",
+        JSON.stringify(existingScores.slice(0, 10))
+      );
+    }
   };
 
   return (
     <div className="app">
-      {/* Dropdown and Reset at Top */}
+      {/* Title at the top */}
+      <h1 className="game-title">Find the pieces listed Below</h1>
+
+      {/* Top bar with dropdown, timer, and reset */}
       <div className="top-bar">
         <ItemDropDown allItems={allItems} itemsFound={itemsFound} />
 
+        <Timer isRunning={isRunning} onStop={handleStop} resetKey={resetKey} />
+
         <button
+          className="reset-button"
           onClick={() => {
             setIsRunning(false);
             setFinalTime(null);
@@ -52,17 +69,19 @@ export default function App() {
             setFoundMessage("");
           }}
         >
-          Reset Timer
+          Reset
         </button>
       </div>
 
+      {/* Show final time if available */}
+      {finalTime !== null && (
+        <p className="final-time">
+          You Found All Items In: {finalTime} seconds
+        </p>
+      )}
+
       {/* Floating Found Message */}
       {foundMessage && <div className="popup-message">{foundMessage}</div>}
-
-      {/* Title and Timer */}
-      <h1>Find The pieces listed</h1>
-      <Timer isRunning={isRunning} onStop={handleStop} resetKey={resetKey} />
-      {finalTime !== null && <p>Your final time: {finalTime} seconds</p>}
 
       {/* Gameboard */}
       <GameBoard
@@ -70,6 +89,8 @@ export default function App() {
         itemsFound={itemsFound}
         setFoundMessage={setFoundMessage}
       />
+
+      <LeaderBoard />
     </div>
   );
 }

@@ -4,13 +4,11 @@ import background from "../assets/background.jpg";
 import "../../styles/GameBoard.css";
 
 const itemLocations = {
-  "Blueprint Scroll": { x: 190, y: 595 },
-  "Robot Arm": { x: 757, y: 413 },
-  Headset: { x: 934, y: 808 },
-  "Noodle Cup": { x: 742, y: 955 },
+  "Blueprint Scroll": { x: 19, y: 59.5 },
+  "Robot Arm": { x: 75.7, y: 41.3 },
+  Headset: { x: 93.4, y: 80.8 },
+  "Noodle Cup": { x: 74.2, y: 95.5 },
 };
-
-const tolerance = 30;
 
 export default function GameBoard({
   onItemsFound,
@@ -20,39 +18,40 @@ export default function GameBoard({
   const [markerPos, setMarkerPos] = useState(null);
   const [markerColor, setMarkerColor] = useState("red");
 
-  const handleClick = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+const handleClick = (e) => {
+  const rect = e.target.getBoundingClientRect();
+  const relX = ((e.clientX - rect.left) / rect.width) * 100;
+  const relY = ((e.clientY - rect.top) / rect.height) * 100;
 
-    let found = false;
+  let found = false;
 
-    for (const [item, coords] of Object.entries(itemLocations)) {
-      const dx = x - coords.x;
-      const dy = y - coords.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+  for (const [item, coords] of Object.entries(itemLocations)) {
+    const dx = relX - coords.x;
+    const dy = relY - coords.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance <= tolerance && !itemsFound.includes(item)) {
-        onItemsFound(item);
-        setFoundMessage(`You found ${item}!`);
-        setMarkerColor("green");
-        found = true;
-        break;
-      }
+    if (distance <= 3 && !itemsFound.includes(item)) { // 3% tolerance
+      onItemsFound(item);
+      setFoundMessage(`You found ${item}!`);
+      setMarkerColor("green");
+      found = true;
+      break;
     }
+  }
 
-    if (!found) {
-      setFoundMessage("Try again!");
-      setMarkerColor("red");
-    }
+  if (!found) {
+    setFoundMessage("Try again!");
+    setMarkerColor("red");
+  }
 
-    setMarkerPos({ x, y });
+  setMarkerPos({ x: relX, y: relY });
 
-    setTimeout(() => {
-      setFoundMessage("");
-      setMarkerPos(null);
-    }, 2000);
-  };
+  setTimeout(() => {
+    setFoundMessage("");
+    setMarkerPos(null);
+  }, 2000);
+};
+
 
   return (
     <div className="game-board">
