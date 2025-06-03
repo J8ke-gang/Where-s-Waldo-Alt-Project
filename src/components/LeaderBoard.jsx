@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 
 export default function LeaderBoard() {
   const [scores, setScores] = useState([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const saved = localStorage.getItem("leaderboard");
     if (saved) {
       setScores(JSON.parse(saved));
     }
   }, []); // run once when component loads
-
+  if (!isClient) return null;
   if (scores.length === 0) return <p>No scores yet.</p>;
 
   return (
