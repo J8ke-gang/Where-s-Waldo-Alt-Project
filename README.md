@@ -1,12 +1,54 @@
-# React + Vite
+# 🤖 Robot Finder – A Where's Waldo-Style Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser-based hidden-object game built with **React + Vite**, set in a futuristic robot-themed scene. The player must locate hidden items in a simple image by clicking on them—just like "Where's Waldo".
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Objective
 
-## Expanding the ESLint configuration
+Find the following hidden items in the robot scene:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧾 Blueprint Scroll  
+- 🦾 Robot Arm  
+- 🎧 Headset  
+- 🍜 Noodle Cup  
+
+Clicking a correct item reveals:
+- ✅ A green circle over it
+- ✅ A checkmark beside its name in the item list
+
+Clicking a wrong spot shows **"Try again."** and a red circle for few seconds where user clicked
+
+---
+
+
+## 🛠️ Tech Stack
+
+- ⚛️ React (JSX)
+- ⚡ Vite
+- 🎨 Canvas via React (`MatrixCanvas.jsx`)
+- 🖼️ Custom images and fonts
+- 🧠 Styled matrix background effect
+- 🗂 Local state and component structure
+
+---
+
+## 📦 Features
+
+- ✅ Green circle stays on found items
+- ✅ "Try again" on wrong click
+- ✅ Checkmarks show found items in list
+- ⏱️ Timer in top-right
+- 🔁 Reset button for timer
+- 🏆 Leaderboard to track best scores
+- 👁️ Matrix-style animated canvas background rendered with React
+- 🤖 Futuristic robot-themed font and UI
+
+---
+
+🐛 Known Issues
+
+Not set up for mobile use
+
+📃 License
+This project is for educational/portfolio use only. Backgrounds and images are sourced from the public internet and not owned by the developer.
