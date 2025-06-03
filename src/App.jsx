@@ -4,6 +4,7 @@ import Timer from "./components/Timer";
 import ItemDropDown from "./components/ItemDropDown";
 import "../styles/App.css";
 import LeaderBoard from "./components/LeaderBoard";
+import MatrixCanvas from "./components/MatrixBackground";
 
 export default function App() {
   const [isRunning, setIsRunning] = useState(true);
@@ -12,6 +13,7 @@ export default function App() {
   const [resetKey, setResetKey] = useState(0);
   const [foundMessage, setFoundMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+
 
   const allItems = ["Blueprint Scroll", "Robot Arm", "Headset", "Noodle Cup"];
   //handle items found
@@ -91,6 +93,9 @@ export default function App() {
         {foundMessage && (
           <div className={`popup-message ${messageType}`}>{foundMessage}</div>
         )}
+            <div>
+      <MatrixCanvas />
+    </div>
       </div>
     </div>
   );

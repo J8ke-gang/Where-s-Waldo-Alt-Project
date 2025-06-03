@@ -17,4 +17,3 @@ export default function ItemDropDown({ allItems, itemsFound }) {
     </div>
   );
 }
-

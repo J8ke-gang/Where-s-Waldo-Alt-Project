@@ -4,7 +4,7 @@ export default function Timer({ isRunning, onStop, resetKey }) {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-// Reset when resetKey changes
+    // Reset when resetKey changes
     setSeconds(0);
   }, [resetKey]);
 
@@ -15,7 +15,7 @@ export default function Timer({ isRunning, onStop, resetKey }) {
         setSeconds((prev) => prev + 1);
       }, 1000);
     }
-//clear timer
+    //clear timer
     return () => clearInterval(interval);
   }, [isRunning]);
 
